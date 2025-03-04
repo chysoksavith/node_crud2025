@@ -1,0 +1,9 @@
+[04/03/2025 09:13:01]TypeError: (intermediate value) is not iterable
+[04/03/2025 09:13:05]TypeError: (intermediate value) is not iterable
+[04/03/2025 09:13:59]TypeError: (intermediate value) is not iterable
+[04/03/2025 09:14:00]TypeError: (intermediate value) is not iterable
+[04/03/2025 09:15:37]TypeError: result is not iterable
+[04/03/2025 09:19:02]Error: You have tried to call .then(), .catch(), or invoked await on the result of query that is not a promise, which is a programming error. Try calling con.promise().query(), or require('mysql2/promise') instead of 'mysql2' for a promise-compatible version of the query interface. To learn how to use async/await or Promises check out documentation at https://sidorares.github.io/node-mysql2/docs#using-promise-wrapper, or the mysql2 documentation at https://sidorares.github.io/node-mysql2/docs/documentation/promise-wrapper
+[04/03/2025 09:19:03]Error: You have tried to call .then(), .catch(), or invoked await on the result of query that is not a promise, which is a programming error. Try calling con.promise().query(), or require('mysql2/promise') instead of 'mysql2' for a promise-compatible version of the query interface. To learn how to use async/await or Promises check out documentation at https://sidorares.github.io/node-mysql2/docs#using-promise-wrapper, or the mysql2 documentation at https://sidorares.github.io/node-mysql2/docs/documentation/promise-wrapper
+[04/03/2025 09:21:38]users is not defined
+[04/03/2025 09:21:39]users is not defined
