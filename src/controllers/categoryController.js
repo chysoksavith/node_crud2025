@@ -69,9 +69,24 @@ const updateCategory = async (req, res) => {
     logError("categories.update", error.message || error, res);
   }
 };
+const destroyCategory = async (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM categories WHERE id = ?";
+  const [result] = await db.query(sql, [id]);
+  if (result.affectedRows > 0) {
+    res.json({
+      message: "Category deleted success",
+    });
+  } else {
+    res.json({
+      message: "ID not found",
+    });
+  }
+};
 module.exports = {
   getCategories,
   createCategory,
   getCategoryById,
-  updateCategory
+  updateCategory,
+  destroyCategory,
 };
