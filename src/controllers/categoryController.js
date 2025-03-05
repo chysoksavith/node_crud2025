@@ -22,6 +22,20 @@ const getCategories = async (req, res) => {
     logError("categories.get", error.message || error, res);
   }
 };
+const getCategoryById = async (req, res) => {
+  const { id } = req.params;
+  const sql = "SELECT * FROM categories WHERE id = ?";
+  const [category] = await db.query(sql, [id]);
+  if (category.length > 0) {
+    res.json({
+      category: category,
+    });
+  } else {
+    res.json({
+      message: "ID not found",
+    });
+  }
+};
 const createCategory = async (req, res) => {
   const { name, parent_id } = req.body;
   const params = [name, parent_id || null];
@@ -36,7 +50,28 @@ const createCategory = async (req, res) => {
     logError("categories.create", error.message || error, res);
   }
 };
+const updateCategory = async (req, res) => {
+  const { id } = req.params;
+  const { name, parent_id } = req.body;
+
+  const sql = "UPDATE categories SET name = ?, parent_id = ? WHERE id = ?";
+  const params = [name, parent_id || null, id];
+  try {
+    const [result] = await db.query(sql, params);
+    if (result.affectedRows > 0) {
+      res.status(200).json({
+        message: "Category updated successfully",
+      });
+    } else {
+      res.status(404).json({ message: "Category not found" });
+    }
+  } catch (error) {
+    logError("categories.update", error.message || error, res);
+  }
+};
 module.exports = {
   getCategories,
   createCategory,
+  getCategoryById,
+  updateCategory
 };
