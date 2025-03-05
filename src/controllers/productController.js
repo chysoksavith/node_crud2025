@@ -5,7 +5,16 @@ const fs = require("fs");
 const path = require("path");
 
 const getAllProduct = async (req, res) => {
-  const sql = "SELECT * FROM products";
+  const sql = `
+    SELECT 
+      products.*, 
+      brands.name AS brand_name, 
+      categories.name AS category_name
+    FROM products
+    LEFT JOIN brands ON products.brand_id = brands.id
+    LEFT JOIN categories ON products.category_id = categories.id
+  `;
+
   try {
     const [products] = await db.query(sql);
     res.json({
@@ -18,7 +27,16 @@ const getAllProduct = async (req, res) => {
 
 const getProductById = async (req, res) => {
   const { id } = req.params;
-  const sql = "SELECT * FROM products WHERE id = ?";
+  const sql = `
+    SELECT 
+      products.*, 
+      brands.name AS brand_name, 
+      categories.name AS category_name
+    FROM products
+    LEFT JOIN brands ON products.brand_id = brands.id
+    LEFT JOIN categories ON products.category_id = categories.id
+    WHERE products.id = ?
+  `;
   const [product] = await db.query(sql, [id]);
   if (product.length > 0) {
     res.json({
