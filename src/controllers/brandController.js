@@ -1,6 +1,7 @@
 const db = require("../config/db");
-const generateSlug = require("../util/helper");
+const { generateSlug } = require("../util/helper");
 const logError = require("../util/logError");
+const { validateCheck } = require("../util/validate");
 
 const getAllBrand = async (req, res) => {
   const sql = "SELECT * FROM brands";
